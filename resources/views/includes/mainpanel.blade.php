@@ -1,5 +1,3 @@
-@extends('layouts.default')
-@section('contents')
 <main class="main">
     <div class="intro-section pt-3 pb-3 mb-2">
         <div class="container">
@@ -3618,4 +3616,3 @@
         </div><!-- End .cta -->
     </div><!-- End .container -->
 </main><!-- End .main -->
-@endsection
