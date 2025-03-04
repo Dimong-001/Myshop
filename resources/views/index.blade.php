@@ -16,61 +16,37 @@
                                     }
                                 }
                             }'>
+                            @foreach($slideshows as $slideshow)
                             <div class="intro-slide">
                                 <figure class="slide-image">
                                     <picture>
                                         <source media="(max-width: 480px)" srcset="assets/images/demos/demo-3/slider/slide-1-480w.jpg">
-                                        <img src="assets/images/demos/demo-3/slider/slide-1.jpg" alt="Image Desc">
+                                        <img src="assets/images/demos/demo-3/slider/{{ $slideshow['image'] ?? 'default.jpg' }}" alt="Image Desc">
                                     </picture>
                                 </figure><!-- End .slide-image -->
 
                                 <div class="intro-content">
-                                    <h3 class="intro-subtitle text-primary">Daily Deals</h3><!-- End .h3 intro-subtitle -->
+                                    <h3 class="intro-subtitle text-primary">{{ $slideshow['title'] ?? 'No Title' }} Daily Deals</h3><!-- End .h3 intro-subtitle -->
                                     <h1 class="intro-title">
-                                        AirPods <br>Earphones
+                                        {{ $slideshow['subtitle'] ?? 'No Subtitle' }} AirPods <br>Earphones
                                     </h1><!-- End .intro-title -->
 
                                     <div class="intro-price">
                                         <sup>Today:</sup>
                                         <span class="text-primary">
-                                            $247<sup>.99</sup>
+                                            {{ $slideshow['text'] ?? 'No Price' }} $247<sup>.99</sup>
                                         </span>
                                     </div><!-- End .intro-price -->
 
-                                    <a href="category.html" class="btn btn-primary btn-round">
+                                    <a href="{{ $slideshow['link'] ?? '#' }}" class="btn btn-primary btn-round">
                                         <span>Click Here</span>
                                         <i class="icon-long-arrow-right"></i>
                                     </a>
                                 </div><!-- End .intro-content -->
                             </div><!-- End .intro-slide -->
+                            @endforeach
 
-                            <div class="intro-slide">
-                                <figure class="slide-image">
-                                    <picture>
-                                        <source media="(max-width: 480px)" srcset="assets/images/demos/demo-3/slider/slide-2-480w.jpg">
-                                        <img src="assets/images/demos/demo-3/slider/slide-2.jpg" alt="Image Desc">
-                                    </picture>
-                                </figure><!-- End .slide-image -->
-
-                                <div class="intro-content">
-                                    <h3 class="intro-subtitle text-primary">Deals and Promotions</h3><!-- End .h3 intro-subtitle -->
-                                    <h1 class="intro-title">
-                                        Echo Dot <br>3rd Gen
-                                    </h1><!-- End .intro-title -->
-
-                                    <div class="intro-price">
-                                        <sup class="intro-old-price">$49,99</sup>
-                                        <span class="text-primary">
-                                            $29<sup>.99</sup>
-                                        </span>
-                                    </div><!-- End .intro-price -->
-
-                                    <a href="category.html" class="btn btn-primary btn-round">
-                                        <span>Click Here</span>
-                                        <i class="icon-long-arrow-right"></i>
-                                    </a>
-                                </div><!-- End .intro-content -->
-                            </div><!-- End .intro-slide -->
+                            <!-- 2 slide-image -->
                         </div><!-- End .intro-slider owl-carousel owl-simple -->
                         
                         <span class="slider-loader"></span><!-- End .slider-loader -->
