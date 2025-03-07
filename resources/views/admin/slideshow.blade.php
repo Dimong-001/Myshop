@@ -4,20 +4,29 @@
     <!-- begin container-fluid -->
     <div class="container-fluid">
        <h1>Slideshow</h1>
+       <div class="text-right my-3">
+            <a href="{{ route('slideshow.createslideshow') }}" class="btn btn-lg btn-success shadow-sm rounded-pill px-4">
+                <i class="bi bi-plus-circle"></i> Add New Slideshow
+            </a>
+        </div>
         <!-- begin row -->
         <div class="row editable-wrapper">
             <div class="col-lg-12 ">
             @if(session('success'))
-                <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong> {{ session('success') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
+            <div id="success-alert" class="alert alert-success alert-dismissible fade show d-flex justify-content-between align-items-center" role="alert">
+                <strong>Success!</strong> {{ session('success') }}
+                <button type="button" class="btn btn-danger btn-sm ms-auto" data-bs-dismiss="alert" aria-label="Close">
+                    &times;
+                </button>
+            </div>
             @endif
 
             @if(session('error'))
-                <div id="error-alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div id="error-alert" class="alert alert-danger alert-dismissible fade show d-flex justify-content-between align-items-center" role="alert">
                     <strong>Error!</strong> {{ session('error') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn btn-sm btn-sm ms-auto" data-bs-dismiss="alert" aria-label="Close">
+                    &times;
+                </button>
                 </div>
             @endif
 
@@ -51,6 +60,17 @@
                                             <!-- Delete Button -->
                                             <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $slideshow->id }}">
                                                 Delete
+                                            </a>
+                                            <a href="{{ route('slideshow.enable_disable', $slideshow->id) }}" class="btn btn-sm {{ $slideshow->show ? 'btn-success' : 'btn-danger' }}">
+                                                <i class="bi {{ $slideshow->show ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+                                            </a>
+                                            <a href="{{ route('slideshow.move_up', $slideshow->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-arrow-up"></i> 
+                                            </a>
+
+                                            <!-- Move Down Button -->
+                                            <a href="{{ route('slideshow.move_down', $slideshow->id) }}" class="btn btn-info btn-sm">
+                                                <i class="bi bi-arrow-down"></i> 
                                             </a>
                                         </td>
                                     </tr>

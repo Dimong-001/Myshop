@@ -31,3 +31,8 @@ Route::get('/category', function () {
     return view('admin.category');
 });
 Route::get('/slideshow/delete/{id}', [SlideshowController::class, 'destroy'])->name('slideshow.delete');
+Route::get('/slideshow/enable_disable/{id}', [SlideshowController::class, 'enable_disable'])->name('slideshow.enable_disable');
+
+Route::get('/slideshow/move-up/{id}', [SlideshowController::class, 'move_up'])->name('slideshow.move_up');
+Route::get('/slideshow/move-down/{id}', [SlideshowController::class, 'move_down'])->name('slideshow.move_down');
+Route::get('create', [SlideshowController::class, 'loadSlideshowForm'])->name('slideshow.createslideshow');

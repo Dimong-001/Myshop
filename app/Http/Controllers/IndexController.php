@@ -9,7 +9,7 @@ class IndexController extends Controller
     //
     public function index()
     {
-        $slideshows = Slideshow::all();
+        $slideshows = Slideshow::where('show','=',1)->get();
         return view('index', compact('slideshows'));
     }
 }

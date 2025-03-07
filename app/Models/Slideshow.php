@@ -13,5 +13,6 @@ class Slideshow extends Model
         'text',
         'link',
         'image',
+        'order',
     ];
 }
