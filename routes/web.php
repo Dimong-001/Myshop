@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\SlideshowController;
 // Route::get('/', function () {
 //     $slideshows=[
 //         ['titile'=>'Promotion 1', 'subtitle'=>'Special discount 10%', 'text'=>'On Chiness New Year', 'link'=>'#', 'image'=>'slide-1.jpg'],
@@ -21,3 +22,12 @@ Route::get('/shop', function () {
 Route::get('/login', function () {
     return view('admin.index');
 });
+Route::get('/slideshow', [SlideshowController::class, 'index'])->name('slideshow.index');
+
+Route::get('/product', function () {
+    return view('admin.product');
+});
+Route::get('/category', function () {
+    return view('admin.category');
+});
+Route::get('/slideshow/delete/{id}', [SlideshowController::class, 'destroy'])->name('slideshow.delete');

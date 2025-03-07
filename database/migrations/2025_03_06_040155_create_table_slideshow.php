@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('slideshows', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('suibtitle');
+            $table->string('subtitle');
             $table->string('text');
             $table->string('link');
             $table->string('image');
+            $table->boolean('show');
+            $table->unsignedInteger('order');
             $table->timestamps();
         });
     }
