@@ -91,8 +91,30 @@
             }
         });
     </script>
+    <script>
+        function toggleSwitchIcon(checkbox) {
+            let label = document.getElementById("toggleLabel");
+            label.innerHTML = checkbox.checked
+                ? '<i class="bi bi-eye"></i> Enabled'
+                : '<i class="bi bi-eye-slash"></i> Disabled';
+            label.classList.toggle("text-success", checkbox.checked);
+            label.classList.toggle("text-danger", !checkbox.checked);
+        }
+    </script>
+    <script>
+    function previewFile() {
+        const file = document.getElementById("imageUpload").files[0];
+        const preview = document.getElementById("previewImage");
 
-
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 </body>
 
 
