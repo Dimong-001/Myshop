@@ -48,7 +48,7 @@
                                 @foreach($slideshows as $slideshow)
                                     <tr>
                                         <td>
-                                            <img src="{{ asset('assets/images/demos/demo-3/slider/thumbnail/' . ($slideshow->image ?? 'default.jpg')) }}" 
+                                            <img src="{{ asset('assets/images/demos/demo-3/slider/' . ($slideshow->image ?? 'default.jpg')) }}" 
                                                 alt="{{ $slideshow->title ?? 'Image' }}"
                                                 width="50" height="50" class="img-thumbnail">
                                         </td>

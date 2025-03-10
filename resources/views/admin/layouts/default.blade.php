@@ -115,6 +115,29 @@
         }
     }
 </script>
+<script>
+    function toggleSwitchIcon() {
+        const toggle = document.getElementById('toggleSwitch');
+        const label = document.querySelector('.form-check-label i');
+
+        if (toggle.checked) {
+            label.classList.remove('bi-eye-slash');
+            label.classList.add('bi-eye');
+            label.nextSibling.nodeValue = ' Enabled';
+        } else {
+            label.classList.remove('bi-eye');
+            label.classList.add('bi-eye-slash');
+            label.nextSibling.nodeValue = ' Disabled';
+        }
+    }
+
+    // Attach event listener
+    document.getElementById('toggleSwitch').addEventListener('change', toggleSwitchIcon);
+
+    // Initialize on page load (in case of old state)
+    window.onload = toggleSwitchIcon;
+</script>
+
 </body>
 
 

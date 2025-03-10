@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+// use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\Slideshow; // Ensure this matches the correct model location
+use Illuminate\Support\Facades\Validator;
 
 class SlideshowController extends Controller
 {
@@ -95,5 +97,65 @@ class SlideshowController extends Controller
     {
         return view('admin.create_slideshow'); // Ensure this Blade file exists
     }
+
+    public function create(Request $request)
+    {
+        $rules = [
+            'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
+            'text' => 'required|string',
+            'link' => 'required|string|max:255',
+            'show' => 'nullable|boolean',
+            'order' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $slideshow = new Slideshow();
+        $slideshow->title = $request->title;
+        $slideshow->subtitle = $request->subtitle;
+        $slideshow->text = $request->text;
+        $slideshow->link = $request->link;
+        $slideshow->show = $request->show ? 1 : 0;
+        $slideshow->order = $request->order ?? 0;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = 'slide-' . time() . '.' . $image->getClientOriginalExtension();
+        
+            // ✅ Define the path using public_path()
+            $destinationPath = public_path('assets/images/demos/demo-3/slider');
+        
+            // ✅ Ensure the directory exists
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+        
+            // ✅ Move file to destination
+            if ($image->move($destinationPath, $filename)) {
+                // ✅ ONLY SAVE THE FILENAME to the database!
+                $slideshow->image = $filename;
+            } else {
+                dd('Failed to move file');
+            }
+        }
+        
+        
+        $slideshow->created_at = now();
+        $slideshow->updated_at = now();
+
+        $slideshow->save();
+
+        return redirect()->route('slideshow.index')->with('success', 'Slideshow created successfully!');
+    }
+
+
 }
 

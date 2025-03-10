@@ -36,3 +36,6 @@ Route::get('/slideshow/enable_disable/{id}', [SlideshowController::class, 'enabl
 Route::get('/slideshow/move-up/{id}', [SlideshowController::class, 'move_up'])->name('slideshow.move_up');
 Route::get('/slideshow/move-down/{id}', [SlideshowController::class, 'move_down'])->name('slideshow.move_down');
 Route::get('create', [SlideshowController::class, 'loadSlideshowForm'])->name('slideshow.createslideshow');
+
+Route::post('slideshow/create', [SlideshowController::class, 'create'])->name('slideshow.create');
+
