@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\AdminController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SlideshowController;
@@ -19,9 +20,9 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/shop', function () {
     return view('shop');
 });
-Route::get('/login', function () {
+Route::get('/admins', function () {
     return view('admin.index');
-});
+})-> middleware('auth');
 Route::get('/slideshow', [SlideshowController::class, 'index'])->name('slideshow.index');
 
 Route::get('/product', function () {
@@ -39,3 +40,12 @@ Route::get('create', [SlideshowController::class, 'loadSlideshowForm'])->name('s
 
 Route::post('slideshow/create', [SlideshowController::class, 'create'])->name('slideshow.create');
 
+
+Auth::routes();
+
+Route::get('/login', [App\Http\Controllers\HomeController::class, 'index'])->name('login');
+Route::post('/login', [App\Http\Controllers\HomeController::class, 'login'])->name('login.post');
+Route::post('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admins', [AdminController::class, 'index'])->name('admin.index');

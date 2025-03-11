@@ -7,6 +7,7 @@ use App\Models\Slideshow;
 class IndexController extends Controller
 {
     //
+    
     public function index()
     {
         $slideshows = Slideshow::where('show','=',1)->get();

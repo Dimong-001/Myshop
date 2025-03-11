@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Validator;
 
 class SlideshowController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $slideshows = Slideshow::orderBy('order', 'asc')->get();
