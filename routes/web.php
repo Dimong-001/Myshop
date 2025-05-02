@@ -22,7 +22,7 @@ Route::get('/shop', function () {
 });
 Route::get('/admins', function () {
     return view('admin.index');
-})-> middleware('auth');
+});
 Route::get('/slideshow', [SlideshowController::class, 'index'])->name('slideshow.index');
 
 Route::get('/product', function () {

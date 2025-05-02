@@ -9,6 +9,11 @@
                         <div class="intro-slider owl-carousel owl-simple owl-dark owl-nav-inside" data-toggle="owl" data-owl-options='{
                                 "nav": false, 
                                 "dots": true,
+                                "animateOut": "fadeOut",
+                                "animateIn": "fadeIn",
+                                "autoplay": true,
+                                "autoplayTimeout": 5000,
+                                "items": 1,
                                 "responsive": {
                                     "768": {
                                         "nav": true,

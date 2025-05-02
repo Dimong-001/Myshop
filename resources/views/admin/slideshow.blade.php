@@ -46,6 +46,7 @@
                             </thead>
                             <tbody>
                                 @foreach($slideshows as $slideshow)
+                                
                                     <tr>
                                         <td>
                                             <img src="{{ asset('assets/images/demos/demo-3/slider/' . ($slideshow->image ?? 'default.jpg')) }}" 
