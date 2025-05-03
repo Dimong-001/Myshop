@@ -160,7 +160,24 @@ class SlideshowController extends Controller
 
         return redirect()->route('slideshow.index')->with('success', 'Slideshow created successfully!');
     }
-
+    
+     // This is your new API endpoint
+    public function apiIndex()
+    {
+        try {
+            $slideshows = Slideshow::where('show', 1)
+                ->orderBy('order', 'asc')
+                ->get(['id', 'title', 'subtitle', 'text', 'image', 'link']);
+                
+            return response()->json($slideshows);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => 'Failed to fetch slideshows', 
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    
 
 }
 

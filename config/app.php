@@ -1,7 +1,16 @@
 <?php
 
 return [
-
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'token', // or sanctum/passport
+            'provider' => 'users',
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Application Name
